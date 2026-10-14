@@ -216,18 +216,6 @@
     ]
   },
   {
-    "id": "storytelling-carousel",
-    "fields": [
-      {
-        "component": "text",
-        "name": "label",
-        "label": "Carousel Label",
-        "valueType": "string",
-        "value": "Our Stories"
-      }
-    ]
-  },
-  {
     "id": "storytelling-slide",
     "fields": [
       {
@@ -254,13 +242,15 @@
         "component": "text",
         "name": "heading",
         "label": "Heading",
-        "valueType": "string"
+        "valueType": "string",
+        "value": "Slide Heading"
       },
       {
         "component": "richtext",
         "name": "description",
         "label": "Description",
-        "valueType": "string"
+        "valueType": "string",
+        "value": "<p>Slide description text goes here.</p>"
       }
     ]
   }
