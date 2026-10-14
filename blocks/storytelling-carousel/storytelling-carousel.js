@@ -2,15 +2,22 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const rows = [...block.children];
-
-  // Filter out any legacy or non-slide label rows (e.g. single cell without picture)
-  const slideRows = rows.filter((row) => {
-    if (row.children.length === 1 && !row.querySelector('picture')) {
-      return false;
-    }
-    return true;
-  });
+  // Support both <ul>/<li> and row <div> structures for multi-field slides
+  let slideRows = [];
+  const ul = block.querySelector(':scope > ul, :scope > div > ul');
+  if (ul) {
+    slideRows = [...ul.children];
+  } else {
+    slideRows = [...block.children].filter((row) => {
+      if (row.classList.contains('storytelling-placeholder')) {
+        return false;
+      }
+      if (row.children.length === 1 && !row.querySelector('picture, img')) {
+        return false;
+      }
+      return true;
+    });
+  }
 
   // If there are no slide items yet (empty block), display an author-friendly placeholder
   if (slideRows.length === 0) {
@@ -19,7 +26,7 @@ export default function decorate(block) {
     placeholder.innerHTML = `
       <div class="storytelling-placeholder-content">
         <p class="storytelling-placeholder-title">Storytelling Carousel</p>
-        <p class="storytelling-placeholder-hint">No slides added yet. Select this block and click <strong>+</strong> in the editor toolbar to add a Storytelling Slide.</p>
+        <p class="storytelling-placeholder-hint">In the properties panel on the right, under <strong>Slides</strong>, click <strong>+ Add</strong> to add slides.</p>
       </div>
     `;
     block.replaceChildren(placeholder);
@@ -43,13 +50,26 @@ export default function decorate(block) {
   slideRows.forEach((row, slideIndex) => {
     const isActive = slideIndex === 0 ? 'active' : '';
 
-    // Map authored columns:
-    // [0] image, [1] imageAlt, [2] category, [3] heading, [4] description
-    const slideImgCol = row.children[0];
+    // Map authored columns or semantic elements
+    let slideImgCol = row.children[0];
     const slideAltCol = row.children[1];
-    const slideCatCol = row.children[2];
-    const slideHeadCol = row.children[3];
-    const slideDescCol = row.children[4];
+    let slideCatCol = row.children[2];
+    let slideHeadCol = row.children[3];
+    let slideDescCol = row.children[4];
+
+    // Fallback if rendered as semantic elements inside an item
+    if (!slideHeadCol && row.querySelector('h1, h2, h3, h4, h5, h6')) {
+      const headingEl = row.querySelector('h1, h2, h3, h4, h5, h6');
+      const pictureEl = row.querySelector('picture, img');
+      const paragraphs = [...row.querySelectorAll('p')];
+      slideImgCol = pictureEl ? pictureEl.parentElement : row.children[0];
+      slideHeadCol = headingEl;
+      if (paragraphs.length >= 2) {
+        [slideCatCol, slideDescCol] = paragraphs;
+      } else if (paragraphs.length === 1) {
+        [slideDescCol] = paragraphs;
+      }
+    }
 
     // Build Image Element
     const imgDiv = document.createElement('div');

@@ -39,11 +39,5 @@
       "button",
       "title"
     ]
-  },
-  {
-    "id": "storytelling-carousel",
-    "components": [
-      "storytelling-slide"
-    ]
   }
 ]

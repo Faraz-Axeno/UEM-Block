@@ -216,41 +216,49 @@
     ]
   },
   {
-    "id": "storytelling-slide",
+    "id": "storytelling-carousel",
     "fields": [
       {
-        "component": "reference",
-        "name": "image",
-        "label": "Slide Image",
+        "component": "container",
+        "name": "slides",
+        "label": "Slides",
         "valueType": "string",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "imageAlt",
-        "label": "Image Alt Text",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "category",
-        "label": "Category",
-        "valueType": "string",
-        "value": "ENGINEERING"
-      },
-      {
-        "component": "text",
-        "name": "heading",
-        "label": "Heading",
-        "valueType": "string",
-        "value": "Slide Heading"
-      },
-      {
-        "component": "richtext",
-        "name": "description",
-        "label": "Description",
-        "valueType": "string",
-        "value": "<p>Slide description text goes here.</p>"
+        "multi": true,
+        "fields": [
+          {
+            "component": "reference",
+            "name": "image",
+            "label": "Slide Image",
+            "valueType": "string",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "imageAlt",
+            "label": "Image Alt Text",
+            "valueType": "string"
+          },
+          {
+            "component": "text",
+            "name": "category",
+            "label": "Category",
+            "valueType": "string",
+            "value": "ENGINEERING"
+          },
+          {
+            "component": "text",
+            "name": "heading",
+            "label": "Heading",
+            "valueType": "string",
+            "value": "Slide Heading"
+          },
+          {
+            "component": "richtext",
+            "name": "description",
+            "label": "Description",
+            "valueType": "string"
+          }
+        ]
       }
     ]
   }
