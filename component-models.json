@@ -216,49 +216,26 @@
     ]
   },
   {
-    "id": "storytelling-carousel",
+    "id": "storytelling-slide",
     "fields": [
       {
-        "component": "container",
-        "name": "slides",
-        "label": "Slides",
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
         "valueType": "string",
-        "multi": true,
-        "fields": [
-          {
-            "component": "reference",
-            "name": "image",
-            "label": "Slide Image",
-            "valueType": "string",
-            "multi": false
-          },
-          {
-            "component": "text",
-            "name": "imageAlt",
-            "label": "Image Alt Text",
-            "valueType": "string"
-          },
-          {
-            "component": "text",
-            "name": "category",
-            "label": "Category",
-            "valueType": "string",
-            "value": "ENGINEERING"
-          },
-          {
-            "component": "text",
-            "name": "heading",
-            "label": "Heading",
-            "valueType": "string",
-            "value": "Slide Heading"
-          },
-          {
-            "component": "richtext",
-            "name": "description",
-            "label": "Description",
-            "valueType": "string"
-          }
-        ]
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "alt",
+        "label": "Alt",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "valueType": "string"
       }
     ]
   }
