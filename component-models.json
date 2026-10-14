@@ -214,5 +214,54 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "storytelling-carousel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Carousel Label",
+        "valueType": "string",
+        "value": "Our Stories"
+      }
+    ]
+  },
+  {
+    "id": "storytelling-slide",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Slide Image",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "category",
+        "label": "Category",
+        "valueType": "string",
+        "value": "ENGINEERING"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
   }
 ]

@@ -1,0 +1,97 @@
+
+{
+  "definitions": [
+    {
+      "title": "Storytelling Carousel",
+      "id": "storytelling-carousel",
+      "model": "storytelling-carousel",
+      "filter": "storytelling-carousel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "storytelling-carousel",
+              "model": "storytelling-carousel"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Storytelling Slide",
+      "id": "storytelling-slide",
+      "model": "storytelling-slide",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "storytelling-slide",
+              "model": "storytelling-slide"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "storytelling-carousel",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Carousel Label",
+          "valueType": "string",
+          "value": "Our Stories"
+        }
+      ]
+    },
+    {
+      "id": "storytelling-slide",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Slide Image",
+          "valueType": "string",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Image Alt Text",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "category",
+          "label": "Category",
+          "valueType": "string",
+          "value": "ENGINEERING"
+        },
+        {
+          "component": "text",
+          "name": "heading",
+          "label": "Heading",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "description",
+          "label": "Description",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "storytelling-carousel",
+      "components": [
+        "storytelling-slide"
+      ]
+    }
+  ]
+}
