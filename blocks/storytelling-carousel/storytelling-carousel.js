@@ -30,15 +30,16 @@ export default function decorate(block) {
   const navWrapper = document.createElement('div');
   navWrapper.className = 'storytelling-nav';
 
-  const imagesWrapper = document.createElement('div');
-  imagesWrapper.className = 'storytelling-images';
-
-  const contentWrapper = document.createElement('div');
-  contentWrapper.className = 'storytelling-content';
+  const slidesWrapper = document.createElement('div');
+  slidesWrapper.className = 'storytelling-slides';
 
   // 2. Parse authored slides
   slideRows.forEach((row, slideIndex) => {
     const isActive = slideIndex === 0 ? 'active' : '';
+
+    const slideItem = document.createElement('div');
+    slideItem.className = `storytelling-slide ${isActive}`;
+    moveInstrumentation(row, slideItem);
 
     const cols = [...row.children];
     const imageCol = cols[0];
@@ -47,7 +48,7 @@ export default function decorate(block) {
 
     // --- Build Image Element ---
     const imgDiv = document.createElement('div');
-    imgDiv.className = `storytelling-img-item ${isActive}`;
+    imgDiv.className = 'storytelling-slide-image';
 
     const picture = imageCol?.querySelector('picture');
     if (picture) {
@@ -64,12 +65,11 @@ export default function decorate(block) {
       if (imageCol) moveInstrumentation(imageCol, placeholderImg);
       imgDiv.append(placeholderImg);
     }
-    imagesWrapper.append(imgDiv);
+    slideItem.append(imgDiv);
 
     // --- Build Content Element (Figma framed style) ---
     const textDiv = document.createElement('div');
-    textDiv.className = `storytelling-text-item ${isActive}`;
-    moveInstrumentation(row, textDiv);
+    textDiv.className = 'storytelling-slide-content';
 
     const frame = document.createElement('div');
     frame.className = 'storytelling-content-frame';
@@ -123,7 +123,8 @@ export default function decorate(block) {
 
     frame.append(body);
     textDiv.append(frame);
-    contentWrapper.append(textDiv);
+    slideItem.append(textDiv);
+    slidesWrapper.append(slideItem);
 
     // --- Build Indicator Dot ---
     const dot = document.createElement('button');
@@ -134,18 +135,14 @@ export default function decorate(block) {
     const activateSlide = () => {
       carouselContainer.querySelectorAll('.active').forEach((el) => el.classList.remove('active'));
       dot.classList.add('active');
-      imgDiv.classList.add('active');
-      textDiv.classList.add('active');
+      slideItem.classList.add('active');
     };
 
     dot.addEventListener('click', activateSlide);
-    imgDiv.addEventListener('click', activateSlide);
-    textDiv.addEventListener('click', activateSlide);
-
     navWrapper.append(dot);
   });
 
-  // 3. Assemble: Nav -> Images -> Content (matching Figma)
-  carouselContainer.append(navWrapper, imagesWrapper, contentWrapper);
+  // 3. Assemble: Nav -> Slides (matching Figma)
+  carouselContainer.append(navWrapper, slidesWrapper);
   block.replaceChildren(carouselContainer);
 }
