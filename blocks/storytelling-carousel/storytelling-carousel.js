@@ -121,13 +121,6 @@ export default function decorate(block) {
       body.append(pCat, hHead, pDesc);
     }
 
-    // Add Figma badge icon below description
-    const badge = document.createElement('div');
-    badge.className = 'st-badge';
-    badge.setAttribute('aria-hidden', 'true');
-    badge.innerHTML = '<div class="st-badge-inner"><span>V</span></div>';
-    body.append(badge);
-
     frame.append(body);
     textDiv.append(frame);
     contentWrapper.append(textDiv);
