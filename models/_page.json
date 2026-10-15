@@ -21,6 +21,109 @@
           "name": "keywords",
           "multi": true,
           "label": "Keywords"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "author",
+          "label": "Author"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "publication-date",
+          "label": "Publication Date"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "category",
+          "label": "Category",
+          "options": [
+            {
+              "name": "General",
+              "value": "general"
+            },
+            {
+              "name": "Engineering",
+              "value": "engineering"
+            },
+            {
+              "name": "Automotive",
+              "value": "automotive"
+            },
+            {
+              "name": "Innovation",
+              "value": "innovation"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "theme",
+          "label": "Theme",
+          "options": [
+            {
+              "name": "Default (Light)",
+              "value": ""
+            },
+            {
+              "name": "Dark",
+              "value": "dark"
+            },
+            {
+              "name": "Highlight",
+              "value": "highlight"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "template",
+          "label": "Template",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Storytelling",
+              "value": "storytelling"
+            },
+            {
+              "name": "Article",
+              "value": "article"
+            }
+          ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Thumbnail / Social Image",
+          "multi": false
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "robots",
+          "label": "Robots (SEO)",
+          "options": [
+            {
+              "name": "Index, Follow",
+              "value": "index, follow"
+            },
+            {
+              "name": "Noindex, Nofollow",
+              "value": "noindex, nofollow"
+            },
+            {
+              "name": "Noindex, Follow",
+              "value": "noindex, follow"
+            }
+          ]
         }
       ]
     }
